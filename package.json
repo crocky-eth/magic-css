@@ -1,0 +1,23 @@
+{
+  "name": "easy-css",
+  "version": "1.0.0",
+  "description": "Build Flexbox without using any fancy framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunrisepopov/easy-css.git"
+  },
+  "keywords": [
+    "css",
+    "flexbox"
+  ],
+  "author": "George Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunrisepopov/easy-css/issues"
+  },
+  "homepage": "https://github.com/sunrisepopov/easy-css#readme"
+}
