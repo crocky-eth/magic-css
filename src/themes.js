@@ -1,5 +1,5 @@
 module.exports = {
-  defaut: {
+  default: {
     fontFamily: 'sans-serif',
     colors: ['black', 'white', 'grey'],
   },

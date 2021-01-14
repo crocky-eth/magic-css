@@ -2,7 +2,7 @@ const themes = require('./themes');
 
 class EasyCss {
   constructor({ theme = 'default', fontFamily, colors = [], variables = {} } = {}) {
-    const currentTheme = themes[theme];
+    const currentTheme = themes[theme] || {};
     this.fontFamily = fontFamily || currentTheme.fontFamily || 'initial';
     this.colors = [...currentTheme.colors, ...colors];
     this.variables = { ...currentTheme.variables, ...variables };
