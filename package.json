@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sunrisepopov/easy-css.git"
+    "url": "git+https://github.com/sunrisepopov/magic-css.git"
   },
   "keywords": [
     "css",
@@ -17,7 +17,7 @@
   "author": "George Wang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sunrisepopov/easy-css/issues"
+    "url": "https://github.com/sunrisepopov/magic-css/issues"
   },
-  "homepage": "https://github.com/sunrisepopov/easy-css#readme"
+  "homepage": "https://github.com/sunrisepopov/magic-css#readme"
 }
