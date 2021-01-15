@@ -63,7 +63,7 @@ class MagicCss {
 }
 
 if (typeof window !== 'undefined') {
-  window.MagicCss = this;
+  window.MagicCss = MagicCss;
 }
 
 module.exports = MagicCss;
