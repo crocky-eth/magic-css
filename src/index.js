@@ -1,6 +1,6 @@
 const themes = require('./themes');
 
-class EasyCss {
+class MagicCss {
   constructor({ theme = 'default', fontFamily, colors = [], variables = {} } = {}) {
     const currentTheme = themes[theme] || {};
     this.fontFamily = fontFamily || currentTheme.fontFamily || 'initial';
@@ -61,4 +61,4 @@ class EasyCss {
   }
 }
 
-module.exports = EasyCss;
+module.exports = MagicCss;
