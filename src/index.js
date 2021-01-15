@@ -44,10 +44,13 @@ class EasyCss {
     ${this.colors
       .map((color) => {
         return typeof color === 'string'
-          ? `.col-${color} { var(--color-${color}); }`
-          : `.col-${color[0]} { var(--color-${color[0]}); }`;
+          ? `.col-${color} { color: var(--color-${color}); } .bg-${color} { background-color: var(--color-${color}); }`
+          : `.col-${color[0]} { color: var(--color-${color[0]}); } .bg-${color[0]} { background-color: var(--color-${color[0]}); }`;
       })
       .join('\n')}
+    ${Object.entries(this.variables).map(([key, value]) => {
+      return Array.isArray(value) ? `.${key}-${value[0]} { ${key}: var(--${key}-${value[0]};` : `.${key} { ${key}: var(--${key}); }`;
+    })}
     `;
   }
 }
