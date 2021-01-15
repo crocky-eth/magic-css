@@ -1,12 +1,11 @@
 {
   "name": "@frontend-ninjas/magic-css",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "description": "Build Flexbox without using any fancy framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack --config webpack.config.js",
-    "publish": "npm run build && npm publish"
+    "build": "npx webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
