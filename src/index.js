@@ -7,9 +7,6 @@ class MagicCss {
     this.fontFamily = fontFamily || currentTheme.fontFamily || 'initial';
     this.colors = [...currentTheme.colors, ...colors];
     this.variables = [...currentTheme.variables, ...variables];
-    if (typeof window !== 'undefined') {
-      window.MagicCss = this;
-    }
   }
 
   getStyle() {
@@ -63,6 +60,10 @@ class MagicCss {
       .join('\n')}
     `;
   }
+}
+
+if (typeof window !== 'undefined') {
+  window.MagicCss = this;
 }
 
 module.exports = MagicCss;
