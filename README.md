@@ -7,7 +7,7 @@ Build Flexbox without using any fancy framework
 MagicCss stands to make Front-End application without using any fancy and heavy frameworks. It can be used both
 client-side and server-side rendering applications.
 
-Here's [example](https://codesandbox.io/s/priceless-shannon-9er3d)
+Here's [example](https://codesandbox.io/s/priceless-shannon-9er3d) and plain [html](example.html)
 
 ### Installation
 

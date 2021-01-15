@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@frontend-ninjas/magic-css@2.0.0/dist/bundle.js"></script>
+</head>
+
+<body>
+  <div class="App">
+    <h1 class="col-red bg-yellow border-bottom">Hello CodeSandbox</h1>
+    <h2>Start editing to see some magic happen!</h2>
+    <div class="border">Border</div>
+    <div class="flex-center justify-around">
+      <p class="col-red">Flex 1</p>
+      <p class="col-blue">Flex 2</p>
+      <p class="col-yellow">Flex 3</p>
+    </div>
+    <div class="cursor border-blue">cursor</div>
+    <button class="background-gradient col-blue">button</button>
+  </div>
+
+  <script>
+    const magic = new MagicCss({
+      fontFamily: "sans-serif",
+      colors: [
+        // 'color' - direct colors supported by default CSS
+        "blue",
+        "yellow",
+        "grey",
+        // ['color-name', 'hex/rgb/hsl']
+        ["red", "#ff0000"],
+        ["opacity-05", "rgba(255,255,255,0.5)"],
+        ["hsl-example", "hsl(0deg 100% 50% / 39%)"]
+      ],
+      variables: [
+        // ['property', 'css-value']
+        ["border", "1px solid red"],
+        ["border-bottom", "1px solid blue"],
+        // ['property', ['identity', 'css-value']]
+        ["border", [2, "1px solid black"]],
+        ["border", ["blue", "1px solid blue"]],
+        ["border-bottom", ["h1", "2px solid red"]],
+        // gradient background example
+        ["background", ["gradient", "linear-gradient(180deg, #000 0%, #fff 100%)"]]
+      ]
+    });
+
+    const magicCss = document.createElement("style");
+    magicCss.innerHTML = magic.getStyle();
+    document.head.append(magicCss);
+  </script>
+</body>
+
+</html>
