@@ -17,7 +17,7 @@ class EasyCss {
           return typeof color === 'string' ? `--color-${color}: ${color};` : `--color-${color[0]}: ${color[1]};`;
         })
         .join('\n')}
-      ${Object.entries(this.variables).map(([key, value]) => {
+      ${this.variables.map(([key, value]) => {
         return Array.isArray(value) ? `--${key}-${value[0]}: ${value[1]};` : `--${key}: ${value}`;
       })}
     }
@@ -48,8 +48,10 @@ class EasyCss {
           : `.col-${color[0]} { color: var(--color-${color[0]}); } .bg-${color[0]} { background-color: var(--color-${color[0]}); }`;
       })
       .join('\n')}
-    ${Object.entries(this.variables).map(([key, value]) => {
-      return Array.isArray(value) ? `.${key}-${value[0]} { ${key}: var(--${key}-${value[0]};` : `.${key} { ${key}: var(--${key}); }`;
+    ${this.variables.map(([key, value]) => {
+      return Array.isArray(value)
+        ? `.${key}-${value[0]} { ${key}: var(--${key}-${value[0]}); }`
+        : `.${key} { ${key}: var(--${key}); }`;
     })}
     `;
   }

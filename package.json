@@ -1,6 +1,6 @@
 {
   "name": "@frontend-ninjas/magic-css",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Build Flexbox without using any fancy framework",
   "main": "index.js",
   "scripts": {
