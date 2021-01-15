@@ -42,8 +42,8 @@ const magic = new MagicCss({
     ['border-bottom', '1px solid blue'],
     // ['property', ['identity', 'css-value']]
     ['border', [2, '1px solid black']],
-    ['border', ['blue', '1px solid green']],
-    ['border-bottom', ['h1', '2px solid blue']],
+    ['border', ['blue', '1px solid blue']],
+    ['border-bottom', ['h1', '2px solid red']],
     // gradient background example
     ['background', ['gradient', 'linear-gradient(180deg, #000 0%, #fff 100%)']],
   ],
