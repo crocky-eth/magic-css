@@ -3,5 +3,6 @@ module.exports = {
     fontFamily: 'sans-serif',
     colors: ['black', 'white', 'grey'],
     variables: [],
+    classes: [],
   },
 };

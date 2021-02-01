@@ -7,6 +7,7 @@ class MagicCss {
     this.fontFamily = fontFamily || currentTheme.fontFamily || 'initial';
     this.colors = [...currentTheme.colors, ...colors];
     this.variables = [...currentTheme.variables, ...variables];
+    this.classes = [...currentTheme.classes, ...classes];
   }
 
   getStyle() {
@@ -14,14 +15,12 @@ class MagicCss {
     :root {
       --font-family: ${this.fontFamily};
       ${this.colors
-        .map((color) => {
-          return typeof color === 'string' ? `--color-${color}: ${color};` : `--color-${color[0]}: ${color[1]};`;
-        })
+        .map((color) =>
+          typeof color === 'string' ? `--color-${color}: ${color};` : `--color-${color[0]}: ${color[1]};`
+        )
         .join('\n')}
       ${this.variables
-        .map(([key, value]) => {
-          return Array.isArray(value) ? `--${key}-${value[0]}: ${value[1]};` : `--${key}: ${value};`;
-        })
+        .map(([key, value]) => (Array.isArray(value) ? `--${key}-${value[0]}: ${value[1]};` : `--${key}: ${value};`))
         .join('\n')}
     }
     body { font-family: var(--font-family); }
@@ -44,19 +43,23 @@ class MagicCss {
     .fill { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
     .uppercase { text-transform: uppercase; }
     .bold { font-weight: bold; }
+    .normal { font-weight: normal; }
     ${this.colors
-      .map((color) => {
-        return typeof color === 'string'
+      .map((color) =>
+        typeof color === 'string'
           ? `.col-${color} { color: var(--color-${color}); } .bg-${color} { background-color: var(--color-${color}); }`
-          : `.col-${color[0]} { color: var(--color-${color[0]}); } .bg-${color[0]} { background-color: var(--color-${color[0]}); }`;
-      })
+          : `.col-${color[0]} { color: var(--color-${color[0]}); } .bg-${color[0]} { background-color: var(--color-${color[0]}); }`
+      )
       .join('\n')}
     ${this.variables
-      .map(([key, value]) => {
-        return Array.isArray(value)
+      .map(([key, value]) =>
+        Array.isArray(value)
           ? `.${key}-${value[0]} { ${key}: var(--${key}-${value[0]}); }`
-          : `.${key} { ${key}: var(--${key}); }`;
-      })
+          : `.${key} { ${key}: var(--${key}); }`
+      )
+      .join('\n')}
+    ${this.classes
+      .map(([key, values]) => `.${key} { ${values.map(([key, value]) => `${key}: ${value};`).join('\n')} }`)
       .join('\n')}
     `;
   }
