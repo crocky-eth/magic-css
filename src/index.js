@@ -1,7 +1,7 @@
 const themes = require('./themes');
 
 class MagicCss {
-  constructor({ theme = 'default', fontFamily, colors = [], variables = {} } = {}) {
+  constructor({ theme = 'default', fontFamily, colors = [], variables = [], calsses = [] } = {}) {
     this.name = 'MagicCss';
     const currentTheme = themes[theme] || {};
     this.fontFamily = fontFamily || currentTheme.fontFamily || 'initial';
