@@ -1,11 +1,12 @@
 {
   "name": "@frontend-ninjas/magic-css",
-  "version": "2.0.3",
+  "version": "3.0.1",
   "description": "Build Flexbox without using any fancy framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack --config webpack.config.js"
+    "build": "npx webpack --config webpack.config.js",
+    "deploy": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/sunrisepopov/magic-css#readme",
   "devDependencies": {
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.2.2",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
   }

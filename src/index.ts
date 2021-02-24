@@ -1,9 +1,37 @@
-const themes = require('./themes');
+import Themes from './themes';
 
-class MagicCss {
-  constructor({ theme = 'default', fontFamily, colors = [], variables = [], classes = [] } = {}) {
-    this.name = 'MagicCss';
-    const currentTheme = themes[theme] || {};
+interface IMagicCssInitial {
+  theme: string;
+  fontFamily?: string;
+  colors: Value[];
+  variables: Value[];
+  classes: Value[];
+}
+
+interface Properties {
+  [key: string]: string;
+}
+type Property = [string, string];
+type Value = String | String[] | Property[] | [string, Property[]];
+
+interface IMagicCss {
+  name: string;
+  fontFamily: string;
+  colors: Value[];
+  variables: Value[];
+  classes: Value[];
+}
+
+class MagicCss implements IMagicCss {
+  public name: string = 'MagicCss';
+  public fontFamily: string = 'MagicCss';
+  public colors: Value[];
+  public variables: Value[];
+  public classes: Value[];
+
+  constructor(initial: IMagicCssInitial) {
+    const { theme = 'default', fontFamily, colors = [], variables = [], classes = [] } = initial;
+    const currentTheme = Themes.get(theme) || {};
     this.fontFamily = fontFamily || currentTheme.fontFamily || 'initial';
     this.colors = [...currentTheme.colors, ...colors];
     this.variables = [...currentTheme.variables, ...variables];
@@ -15,7 +43,7 @@ class MagicCss {
     :root {
       --font-family: ${this.fontFamily};
       ${this.colors
-        .map((color) =>
+        .map((color: String) =>
           typeof color === 'string' ? `--color-${color}: ${color};` : `--color-${color[0]}: ${color[1]};`
         )
         .join('\n')}
@@ -59,14 +87,44 @@ class MagicCss {
       )
       .join('\n')}
     ${this.classes
-      .map(([key, values]) => `.${key} { ${values.map(([key, value]) => `${key}: ${value};`).join('\n')} }`)
+      .map(
+        ([key, values]: [string, Property[]]) =>
+          `.${key} { ${values
+            .map(([key, value]: [string, string]) => (value ? `${key}: ${value};` : key))
+            .join('\n')} }`
+      )
       .join('\n')}
     `;
   }
 }
 
+var window: any;
 if (typeof window !== 'undefined') {
-  window.MagicCss = MagicCss;
+  window['MagicCss'] = MagicCss;
 }
 
-module.exports = MagicCss;
+export const mediaSize = {
+  mobile: '@media all and (max-width: 577px)',
+  tablet: '@media all and (max-width: 767px)',
+  media2x: '@media all and (min-width: 2400px)',
+  media3x: '@media all and (min-width: 3200px)',
+};
+
+export const withMedia = (
+  selector: string,
+  prop: string,
+  [general, media2x, media3x, mobile]: [String | null, String | null, String | null, String | null]
+) => `
+  ${selector ? `${selector} {` : ''}
+    ${general ? `${prop}: ${general};` : ''}
+    ${mobile ? `${mediaSize.mobile} { ${prop}: ${mobile}; }` : ''}
+    ${media2x ? `${mediaSize.media2x} { ${prop}: ${media2x}; }` : ''}
+    ${media3x ? `${mediaSize.media3x} { ${prop}: ${media3x}; }` : ''}
+  ${selector ? '}' : ''}
+`;
+
+export const withMobile = (props: Array<string>, value: Properties) => `
+  ${props.map((prop, idx) => `@media all and (max-width: 577px) { ${prop}: ${value[idx]} }`)}
+`;
+
+export default MagicCss;
